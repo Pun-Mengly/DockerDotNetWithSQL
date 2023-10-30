@@ -40,8 +40,8 @@ namespace WebApplication1.Controllers
                 List<string> list = new List<string>();
 
                 // Create a connection string.
-                //string connectionString = "Server=uat-tab-01;Database=SpringDB;User Id=userapp;Password=AMKAdmin*&*;";
-                string connectionString = "Server=db:1433;Database=tempdb;User Id=sa;Password=Mengly@123";
+                //string connectionString = "Server=uat-tab-01;Database=SpringDB;User Id=userapp;Password=AMKAdmin*&*"; //Host Coonection String
+                string connectionString = "Server=db;Database=SpringDB;User Id=sa;Password=Pa55w0rd2019"; //Contianer Connection String
 
                 // Create a SqlConnection object.
                 using (SqlConnection conn = new SqlConnection(connectionString))

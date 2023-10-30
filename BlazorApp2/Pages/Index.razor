@@ -1,0 +1,31 @@
+﻿@page "/"
+@using BlazorApp2.Data;
+@inject ApiService ApiService
+
+<PageTitle>Index</PageTitle>
+
+<h1>Hello, world!</h1>
+
+
+
+<h3>API Response:</h3>
+<p>@apiResponse</p>
+
+@code {
+    private string? apiResponse;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            // Call the API using the injected ApiService
+            apiResponse = await ApiService.GetApiData();
+        }
+        catch (Exception ex)
+        {
+            // Handle any exceptions that may occur during the API call
+            // Display an error message or perform error handling logic
+            Console.WriteLine(ex.Message);
+        }
+    }
+}

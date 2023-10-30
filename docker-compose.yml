@@ -1,0 +1,41 @@
+﻿﻿version: '3.8'
+
+networks:
+  web-api1:
+
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server
+    environment:
+       ACCEPT_EULA: "Y"
+       MSSQL_SA_PASSWORD: "Pa55w0rd2019" 
+    ports: 
+     - "1444:1433" 
+    networks:
+      - web-api1    
+  web-api:
+    build:
+      context: WebApplication1/
+      dockerfile: Dockerfile
+    container_name: web-api1-con
+    ports:
+      - 7770:80
+    depends_on:
+      - db
+    environment:
+      DBServer: "db"
+    networks:
+      - web-api1
+  web:
+    build:
+      context: BlazorApp2/
+      dockerfile: Dockerfile
+    container_name: web-con
+    ports:
+      - 7771:80
+    depends_on:
+      - web-api
+    networks:
+      - web-api1
+      
+
